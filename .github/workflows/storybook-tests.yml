@@ -1,7 +1,11 @@
 # .github/workflows/storybook-tests.yml
 
 name: "Storybook Tests"
-on: push
+on:
+  pull_request:
+    branches: [main]
+
+  workflow_dispatch:
 jobs:
   storybook_tests:
     timeout-minutes: 60
@@ -21,4 +25,4 @@ jobs:
         run: |
           npx concurrently -k -s first -n "SB,TEST" -c "magenta,blue" \
             "npx http-server storybook-static --port 6006 --silent" \
-            "npx wait-on tcp:6006 && yarn test-storybook"
+            "npx wait-on tcp:6006 && yarn test-storybook:ci"
