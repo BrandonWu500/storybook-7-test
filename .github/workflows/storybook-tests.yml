@@ -3,7 +3,7 @@
 name: "Storybook Tests"
 on: push
 jobs:
-  test:
+  storybook_tests:
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
